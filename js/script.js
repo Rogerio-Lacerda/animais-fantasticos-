@@ -1,5 +1,5 @@
 import AccordionList from "./modules/accordion-list.js";
-import initTabNavegacao from "./modules/tab-navegacao.js";
+import TabNavegacao from "./modules/tab-navegacao.js";
 import ScrollSuave from "./modules/scroll-suave.js";
 import initModal from "./modules/modal.js";
 import initTooltip from "./modules/tooltip.js";
@@ -10,7 +10,11 @@ import initFetchAnimais from "./modules/fetch-animais.js";
 import initFetchBitcoin from "./modules/fetch-bitcoin.js";
 import initScrollAnimado from "./modules/scroll-animado.js";
 
-initTabNavegacao();
+const tabNav = new TabNavegacao(
+  '[data-tab="animais"] li',
+  '[data-tab="content"] section'
+);
+tabNav.init();
 
 const accordionList = new AccordionList('[data-anime="accordion"] dt');
 accordionList.init();
