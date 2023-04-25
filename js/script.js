@@ -2,7 +2,7 @@ import AccordionList from "./modules/accordion-list.js";
 import TabNavegacao from "./modules/tab-navegacao.js";
 import ScrollSuave from "./modules/scroll-suave.js";
 import Modal from "./modules/modal.js";
-import initTooltip from "./modules/tooltip.js";
+import Tooltip from "./modules/tooltip.js";
 import initDropdownMenu from "./modules/dropdown-menu.js";
 import initMenuMobile from "./modules/menu-mobile.js";
 import initHorarioSemana from "./modules/horario-semana.js";
@@ -29,7 +29,9 @@ const modal = new Modal(
 );
 modal.init();
 
-initTooltip();
+const tooltip = new Tooltip("[data-mapa]");
+tooltip.init();
+
 initDropdownMenu();
 initMenuMobile();
 initHorarioSemana();
