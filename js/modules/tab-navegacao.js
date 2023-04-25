@@ -1,24 +1,36 @@
-export default function initTabNavegacao() {
-  const tabAnimais = document.querySelectorAll('[data-tab="animais"] li');
-  const tabContent = document.querySelectorAll('[data-tab="content"] section');
+export default class TabNavegacao {
+  constructor(menu, content) {
+    this.menu = document.querySelectorAll(menu);
+    this.content = document.querySelectorAll(content);
+    this.activeClass = "ativo";
+  }
 
-  function activeTabNavegacao(index) {
-    tabContent.forEach((item) => {
-      if (item.classList.contains("ativo")) {
-        item.classList.remove("ativo");
+  // Atiav a tab de acordo com a index da mesma
+  activeTabNavegacao(index) {
+    this.content.forEach((item) => {
+      if (item.classList.contains(this.activeClass)) {
+        item.classList.remove(this.activeClass);
         item.classList.remove(item.dataset.anime);
       }
     });
-    tabContent[index].classList.add(tabContent[index].dataset.anime);
-    tabContent[index].classList.add("ativo");
+    this.content[index].classList.add(this.content[index].dataset.anime);
+    this.content[index].classList.add(this.activeClass);
   }
-  if (tabAnimais.length && tabContent.length) {
-    tabContent[0].classList.add("ativo");
 
-    tabAnimais.forEach((item, index) => {
-      item.addEventListener("click", () => {
-        activeTabNavegacao(index);
-      });
+  // Adiciona os eventos nas tabs
+  addTabNavEvent() {
+    this.menu.forEach((item, index) => {
+      item.addEventListener("click", () => this.activeTabNavegacao(index));
     });
+  }
+
+  // Inicia funçao
+  init() {
+    if (this.menu && this.content) {
+      // ativa o primeiro item
+      this.activeTabNavegacao(0);
+      this.addTabNavEvent();
+    }
+    return this;
   }
 }
