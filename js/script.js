@@ -7,7 +7,7 @@ import initDropdownMenu from "./modules/dropdown-menu.js";
 import initMenuMobile from "./modules/menu-mobile.js";
 import initHorarioSemana from "./modules/horario-semana.js";
 import fetchAnimais from "./modules/fetch-animais.js";
-import initFetchBitcoin from "./modules/fetch-bitcoin.js";
+import fetchBitcoin from "./modules/fetch-bitcoin.js";
 import initScrollAnimado from "./modules/scroll-animado.js";
 
 const tabNav = new TabNavegacao(
@@ -38,5 +38,6 @@ initHorarioSemana();
 
 fetchAnimais("../../animais.json", ".numeros");
 
-initFetchBitcoin();
+fetchBitcoin("https://blockchain.info/ticker", ".btc-container");
+
 initScrollAnimado();
