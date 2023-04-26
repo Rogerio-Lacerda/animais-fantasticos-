@@ -6,7 +6,7 @@ import Tooltip from "./modules/tooltip.js";
 import initDropdownMenu from "./modules/dropdown-menu.js";
 import initMenuMobile from "./modules/menu-mobile.js";
 import initHorarioSemana from "./modules/horario-semana.js";
-import initFetchAnimais from "./modules/fetch-animais.js";
+import fetchAnimais from "./modules/fetch-animais.js";
 import initFetchBitcoin from "./modules/fetch-bitcoin.js";
 import initScrollAnimado from "./modules/scroll-animado.js";
 
@@ -35,6 +35,8 @@ tooltip.init();
 initDropdownMenu();
 initMenuMobile();
 initHorarioSemana();
-initFetchAnimais();
+
+fetchAnimais("../../animais.json", ".numeros");
+
 initFetchBitcoin();
 initScrollAnimado();
