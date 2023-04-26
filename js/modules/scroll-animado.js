@@ -1,11 +1,14 @@
-export default function initScrollAnimado() {
-  const sections = document.querySelectorAll('[data-scroll="animado"]');
+export default class ScrollAnimado {
+  constructor(sections) {
+    this.sections = document.querySelectorAll(sections);
+    this.alturaTela = window.innerHeight * 0.6;
+    this.activeScrollAnimado = this.activeScrollAnimado.bind(this);
+  }
 
-  sections[0].classList.add("ativo");
-  const alturaTela = window.innerHeight * 0.6;
-  function activeScrollAnimado() {
-    sections.forEach((item) => {
-      const altura = item.getBoundingClientRect().top - alturaTela < 0;
+  activeScrollAnimado() {
+    // this.sections[0].classList.add("ativo");
+    this.sections.forEach((item) => {
+      const altura = item.getBoundingClientRect().top - this.alturaTela < 0;
       if (altura) {
         item.classList.add("ativo");
       } else if (item.classList.contains("ativo")) {
@@ -14,5 +17,15 @@ export default function initScrollAnimado() {
     });
   }
 
-  window.addEventListener("scroll", activeScrollAnimado);
+  addAnimaEvent() {
+    window.addEventListener("scroll", this.activeScrollAnimado);
+  }
+
+  init() {
+    if (this.sections) {
+      this.activeScrollAnimado(this.sections[0]);
+      this.addAnimaEvent();
+    }
+    return this;
+  }
 }

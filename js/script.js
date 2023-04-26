@@ -3,12 +3,12 @@ import TabNavegacao from "./modules/tab-navegacao.js";
 import ScrollSuave from "./modules/scroll-suave.js";
 import Modal from "./modules/modal.js";
 import Tooltip from "./modules/tooltip.js";
+import ScrollAnimado from "./modules/scroll-animado.js";
 import initDropdownMenu from "./modules/dropdown-menu.js";
 import initMenuMobile from "./modules/menu-mobile.js";
 import initHorarioSemana from "./modules/horario-semana.js";
 import fetchAnimais from "./modules/fetch-animais.js";
 import fetchBitcoin from "./modules/fetch-bitcoin.js";
-import initScrollAnimado from "./modules/scroll-animado.js";
 
 const tabNav = new TabNavegacao(
   '[data-tab="animais"] li',
@@ -32,6 +32,9 @@ modal.init();
 const tooltip = new Tooltip("[data-mapa]");
 tooltip.init();
 
+const scrollAnimado = new ScrollAnimado('[data-scroll="animado"]');
+scrollAnimado.init();
+
 initDropdownMenu();
 initMenuMobile();
 initHorarioSemana();
@@ -39,5 +42,3 @@ initHorarioSemana();
 fetchAnimais("../../animais.json", ".numeros");
 
 fetchBitcoin("https://blockchain.info/ticker", ".btc-container");
-
-initScrollAnimado();
