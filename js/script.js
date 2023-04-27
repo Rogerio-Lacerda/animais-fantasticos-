@@ -48,7 +48,6 @@ const menuMobile = new MenuMobile(
 menuMobile.init();
 
 const funcionamento = new Funcionamento("[data-semana]");
-console.log(funcionamento);
 funcionamento.init();
 
 fetchAnimais("../../animais.json", ".numeros");
