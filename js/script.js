@@ -4,7 +4,7 @@ import ScrollSuave from "./modules/scroll-suave.js";
 import Modal from "./modules/modal.js";
 import Tooltip from "./modules/tooltip.js";
 import ScrollAnimado from "./modules/scroll-animado.js";
-import initDropdownMenu from "./modules/dropdown-menu.js";
+import DropdownMenu from "./modules/dropdown-menu.js";
 import initMenuMobile from "./modules/menu-mobile.js";
 import initHorarioSemana from "./modules/horario-semana.js";
 import fetchAnimais from "./modules/fetch-animais.js";
@@ -35,7 +35,12 @@ tooltip.init();
 const scrollAnimado = new ScrollAnimado('[data-scroll="animado"]');
 scrollAnimado.init();
 
-initDropdownMenu();
+const dropdownMenu = new DropdownMenu(
+  '[data-anime="sobre"]',
+  '[data-anime="dropdown"]'
+);
+dropdownMenu.init();
+
 initMenuMobile();
 initHorarioSemana();
 
