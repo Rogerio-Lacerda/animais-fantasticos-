@@ -50,6 +50,6 @@ menuMobile.init();
 const funcionamento = new Funcionamento("[data-semana]");
 funcionamento.init();
 
-fetchAnimais("../../animais.json", ".numeros");
+fetchAnimais("./animais.json", ".numeros");
 
 fetchBitcoin("https://blockchain.info/ticker", ".btc-container");
