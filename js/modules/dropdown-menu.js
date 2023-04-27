@@ -1,37 +1,34 @@
-export default function initDropdownMenu() {
-  const sobre = document.querySelector('[data-anime="sobre"]');
-  const dropdown = document.querySelector('[data-anime="dropdown"]');
-  function handleClick(event) {
-    event.preventDefault();
-    dropdown.classList.add("ativo");
+import initOutsideClick from "./outside-click.js";
 
-    outsideClick(this, ["click", "touchstart"], () => {
-      dropdown.classList.remove("ativo");
+export default class DropdownMenu {
+  constructor(sobre, dropdown) {
+    this.sobre = document.querySelector(sobre);
+    this.dropdown = document.querySelector(dropdown);
+    this.events = ["click", "touchstart"];
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  // Ativa o dropdownMenu e adiciona
+  // a função que observa o clique fora dele
+  handleClick(event) {
+    event.preventDefault();
+    this.dropdown.classList.add("ativo");
+    initOutsideClick(event.currentTarget, this.events, () => {
+      this.dropdown.classList.remove("ativo");
     });
   }
-  function outsideClick(elemento, eventos, callback) {
-    const html = document.documentElement;
-    const outside = "data-outside";
 
-    if (!elemento.hasAttribute(outside, "")) {
-      elemento.setAttribute(outside, "");
-      eventos.forEach((evento) => {
-        html.addEventListener(evento, handleOutsideClick);
-      });
-    }
-
-    function handleOutsideClick(event) {
-      if (!elemento.contains(event.target)) {
-        elemento.removeAttribute(outside, "");
-        eventos.forEach((evento) => {
-          html.removeEventListener(evento, handleOutsideClick);
-        });
-        callback();
-      }
-    }
+  addDropdownEvent() {
+    this.events.forEach(() => {
+      this.sobre.addEventListener("click", this.handleClick);
+    });
   }
 
-  ["click", "touchstart"].forEach(() => {
-    sobre.addEventListener("click", handleClick);
-  });
+  // Inicia a função
+  init() {
+    if (this.sobre && this.dropdown) {
+      this.addDropdownEvent();
+    }
+    return this;
+  }
 }
