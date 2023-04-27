@@ -5,7 +5,7 @@ import Modal from "./modules/modal.js";
 import Tooltip from "./modules/tooltip.js";
 import ScrollAnimado from "./modules/scroll-animado.js";
 import DropdownMenu from "./modules/dropdown-menu.js";
-import initMenuMobile from "./modules/menu-mobile.js";
+import MenuMobile from "./modules/menu-mobile.js";
 import initHorarioSemana from "./modules/horario-semana.js";
 import fetchAnimais from "./modules/fetch-animais.js";
 import fetchBitcoin from "./modules/fetch-bitcoin.js";
@@ -41,7 +41,12 @@ const dropdownMenu = new DropdownMenu(
 );
 dropdownMenu.init();
 
-initMenuMobile();
+const menuMobile = new MenuMobile(
+  '[data-mobile="btn"]',
+  '[data-mobile="menu"]'
+);
+menuMobile.init();
+
 initHorarioSemana();
 
 fetchAnimais("../../animais.json", ".numeros");
