@@ -6,7 +6,7 @@ import Tooltip from "./modules/tooltip.js";
 import ScrollAnimado from "./modules/scroll-animado.js";
 import DropdownMenu from "./modules/dropdown-menu.js";
 import MenuMobile from "./modules/menu-mobile.js";
-import initHorarioSemana from "./modules/horario-semana.js";
+import Funcionamento from "./modules/funcionamento.js";
 import fetchAnimais from "./modules/fetch-animais.js";
 import fetchBitcoin from "./modules/fetch-bitcoin.js";
 
@@ -47,7 +47,9 @@ const menuMobile = new MenuMobile(
 );
 menuMobile.init();
 
-initHorarioSemana();
+const funcionamento = new Funcionamento("[data-semana]");
+console.log(funcionamento);
+funcionamento.init();
 
 fetchAnimais("../../animais.json", ".numeros");
 
