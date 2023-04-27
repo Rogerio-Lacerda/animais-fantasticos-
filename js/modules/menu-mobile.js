@@ -1,43 +1,35 @@
-export default function initMenuMobile() {
-  const btnMenu = document.querySelector('[data-mobile="btn"]');
-  const menuContainer = document.querySelector('[data-mobile="menu"]');
+import initOutsideClick from "./outside-click.js";
 
-  function handleClick(event) {
+export default class MenuMobile {
+  constructor(btnMenu, menuContainer) {
+    this.btnMenu = document.querySelector(btnMenu);
+    this.menuContainer = document.querySelector(menuContainer);
+    this.className = "ativo";
+    this.events = ["click", "touchstart"];
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(event) {
     event.preventDefault();
-    menuContainer.classList.toggle("ativo");
-    btnMenu.classList.toggle("ativo");
+    this.menuContainer.classList.toggle(this.className);
+    this.btnMenu.classList.toggle(this.className);
 
-    outsideClick(menuContainer, ["click", "touchstart"], () => {
-      menuContainer.classList.remove("ativo");
-      btnMenu.classList.remove("ativo");
+    initOutsideClick(this.menuContainer, this.events, () => {
+      this.menuContainer.classList.remove(this.className);
+      this.btnMenu.classList.remove(this.className);
     });
   }
 
-  function outsideClick(elemento, eventos, callback) {
-    const html = document.documentElement;
-    const outside = "data-outside";
-
-    if (!elemento.hasAttribute(outside, "")) {
-      elemento.setAttribute(outside, "");
-      setTimeout(() => {
-        eventos.forEach((evento) => {
-          html.addEventListener(evento, handleOutsideClick);
-        });
-      });
-    }
-
-    function handleOutsideClick(event) {
-      if (!elemento.contains(event.target)) {
-        elemento.removeAttribute(outside, "");
-        eventos.forEach((evento) => {
-          html.removeEventListener(evento, handleOutsideClick);
-        });
-        callback();
-      }
-    }
+  addMenuMobileEvent() {
+    this.events.forEach((evento) => {
+      this.btnMenu.addEventListener(evento, this.handleClick);
+    });
   }
 
-  ["click", "touchstart"].forEach((evento) => {
-    btnMenu.addEventListener(evento, handleClick);
-  });
+  init() {
+    if (this.btnMenu && this.menuContainer) {
+      this.addMenuMobileEvent();
+    }
+    return this;
+  }
 }
