@@ -21,7 +21,8 @@
   background: #fff;
   border: 8px solid #fb4;
   box-shadow: 0 0 0 8px #fff;
-  min-width: 500px;
+  width: 80vw;
+  max-width: 600px;
   position: relative;
 }
 
@@ -42,6 +43,7 @@
 
 .modal input {
   padding: 8px;
+  border: 1px solid #222;
 }
 
 .modal button {
@@ -58,34 +60,17 @@
 }
 
 .fechar {
-  font-family: "IBM Plex Mono", monospace;
   position: absolute;
   top: -30px;
   right: -30px;
-  background: #e54;
+  background: #e54 url("../img/fechar.svg") center center no-repeat;
   height: 50px;
   width: 50px;
   border-radius: 50%;
   border: 2px solid #fff;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.6);
-  text-transform: uppercase;
-  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.6rem;
   cursor: pointer;
-}
-
-@media (max-width: 600px) {
-  .modal {
-    min-width: initial;
-    width: 400px;
-  }
-}
-
-@media (max-width: 500px) {
-  .modal {
-    width: 280px;
-  }
 }
