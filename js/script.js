@@ -9,6 +9,7 @@ import MenuMobile from "./modules/menu-mobile.js";
 import Funcionamento from "./modules/funcionamento.js";
 import fetchAnimais from "./modules/fetch-animais.js";
 import fetchBitcoin from "./modules/fetch-bitcoin.js";
+import SlideNav from "./modules/slide.js";
 
 const tabNav = new TabNavegacao(
   '[data-tab="animais"] li',
@@ -53,3 +54,7 @@ funcionamento.init();
 fetchAnimais("./animais.json", ".numeros");
 
 fetchBitcoin("https://blockchain.info/ticker", ".btc-container");
+
+const slide = new SlideNav(".slide", ".slide-wrapper");
+slide.init();
+slide.addControl(".custom-controls");
